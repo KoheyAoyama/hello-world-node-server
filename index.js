@@ -5,6 +5,7 @@ const app = express()
 const port = 3030
 
 app.get('/', (req,res) => {
+    console.log(req.query.zipcode)
     const data = (data) => {
         console.log(data)
         const address = data.results[0]
@@ -16,7 +17,15 @@ app.get('/', (req,res) => {
         )
     }
 
-    axios
+    if (req.query.zipcode === undefined) {
+        res.send(
+            `
+                <h1>Please enter ZIPCODE</h1>
+                <p>Add [?zipcode=1234567] to very end of this page url.</p>
+            `
+        )
+    } else {
+        axios
         .get('https://zipcloud.ibsnet.co.jp/api/search',{
             params: {
                 zipcode: req.query.zipcode
@@ -24,6 +33,8 @@ app.get('/', (req,res) => {
         })
         .then((response) => data(response.data))
         .catch(console.log);
+    }
+
 })
 
 app.listen(port, () => {
