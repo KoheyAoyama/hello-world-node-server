@@ -2,7 +2,7 @@ const { response } = require('express')
 const express = require('express')
 const axios = require('axios').default
 const app = express()
-const port = 80
+const port = 3030
 
 app.get('/', (req,res) => {
     console.log(req.query.zipcode)
