@@ -1,42 +1,22 @@
+const { response } = require('express')
 const express = require('express')
+const axios = require('axios').default
 const app = express()
 const port = 3030
 
-app.get('/api/v1/users', (req,res) => {
-    res.send(
-        {
-            'data': [
-                {
-                    id: 0001,
-                    user: 'kohey',
-                    gender: 'male',
-                    age: 30,
-                    country: 'Japan'
-                },
-                {
-                    id: 0002,
-                    user: 'kohey',
-                    gender: 'male',
-                    age: 30,
-                    country: 'Japan'
-                },
-                {
-                    id: 0003,
-                    user: 'kohey',
-                    gender: 'male',
-                    age: 30,
-                    country: 'Japan'
-                },
-                {
-                    id: 0004,
-                    user: 'kohey',
-                    gender: 'male',
-                    age: 30,
-                    country: 'Japan'
-                }
-            ]
-        }
-    )
+app.get('/', (req,res) => {
+    const data = (data) => {
+        res.json(data)
+    }
+
+    axios
+        .get('https://zipcloud.ibsnet.co.jp/api/search',{
+            params: {
+                zipcode: req.query.zipcode
+            }
+        })
+        .then((response) => data(response.data))
+        .catch(console.log);
 })
 
 app.listen(port, () => {
