@@ -2,7 +2,7 @@ const { response } = require('express')
 const express = require('express')
 const axios = require('axios').default
 const app = express()
-const port = 3030
+const port = 80
 
 app.get('/', (req,res) => {
     console.log(req.query.zipcode)
@@ -38,5 +38,5 @@ app.get('/', (req,res) => {
 })
 
 app.listen(port, () => {
-    console.log(`Listening at http://localhost:${port}`)
+    console.log(`Listening`)
 })
