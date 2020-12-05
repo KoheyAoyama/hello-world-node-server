@@ -5,18 +5,6 @@ const app = express()
 const port = process.env.PORT || 3030
 
 app.get('/', (req,res) => {
-    console.log(req.query.zipcode)
-    const data = (data) => {
-        res.json(data)
-        //const address = data.results[0]
-        // res.send(
-        //     `
-        //         <p>郵便番号: ${address.zipcode} の住所は...</p>
-        //         <h1>${address.address1} ${address.address2} ${address.address3}</h1>
-        //     `
-        // )
-    }
-
     if (req.query.zipcode === undefined) {
         res.send(
             `
@@ -31,7 +19,7 @@ app.get('/', (req,res) => {
                 zipcode: req.query.zipcode
             }
         })
-        .then((response) => data(response.data))
+        .then((response) => res.json(response.data))
         .catch(console.log);
     }
 
