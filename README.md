@@ -1,6 +1,6 @@
-# Node.js server application
+# Very simple Node.js server application
 
-Just return the some data as JSON hardcorded.
-http://localhost:3030/api/v1/users
+Return the address information json from *zipcloud*.
+https://kohey-hello-node.herokuapp.com/
 
 Hello Node.js! Pleasure.
